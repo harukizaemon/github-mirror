@@ -16,8 +16,11 @@ if [ -z "$GITHUB_USER" ] || [ -z "$GITHUB_PAT" ]; then
     exit 1
 fi
 
+# Flag to track if any operation failed
+FAILED=0
+
 # Configuration
-TARGET_DIR="$HOME/github_mirrors"
+TARGET_DIR="$HOME/github-mirrors"
 
 # Create target directory
 mkdir -p "$TARGET_DIR"
@@ -34,11 +37,17 @@ for repo in $repos; do
         # Update existing mirror
         echo "Updating mirror for $repo"
         cd "$mirror_dir"
-        git remote set-url origin "$repo_url"
-        git remote update --prune
+        git remote set-url origin "$repo_url" || FAILED=1
+        git remote update --prune || FAILED=1
     else
         # Create new mirror
         echo "Creating mirror for $repo"
-        git clone --mirror "$repo_url" "$mirror_dir"
+        git clone --mirror "$repo_url" "$mirror_dir" || FAILED=1
     fi
 done
+
+# Exit with failure if any operation failed
+if [ $FAILED -ne 0 ]; then
+    echo "One or more repositories failed to mirror."
+    exit 1
+fi
