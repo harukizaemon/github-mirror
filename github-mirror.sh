@@ -23,11 +23,11 @@ TARGET_DIR="$HOME/github_mirrors"
 mkdir -p "$TARGET_DIR"
 
 # Fetch repository list from GitHub API
-repos=$(curl -s -H "Authorization: Bearer $GITHUB_PAT" "https://api.github.com/user/repos?per_page=100" | grep '"name"' | sed -E 's/.*"name": "([^"]+)".*/\1/')
+repos=$(curl -s -H "Authorization: Bearer $GITHUB_PAT" "https://api.github.com/user/repos?per_page=100" | grep '"full_name"' | sed -E 's/.*"full_name": "([^"]+)".*/\1/')
 
 # Mirror each repository
 for repo in $repos; do
-    repo_url="https://$GITHUB_PAT@github.com/$GITHUB_USER/$repo"
+    repo_url="https://$GITHUB_PAT@github.com/$repo"
     mirror_dir="$TARGET_DIR/$repo"
 
     if [ -d "$mirror_dir" ]; then
