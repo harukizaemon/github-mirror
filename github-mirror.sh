@@ -11,8 +11,8 @@ fi
 set +a
 
 # Validate required variables
-if [ -z "$GITHUB_USER" ] || [ -z "$GITHUB_TOKEN" ]; then
-    echo "Error: GITHUB_USER and GITHUB_TOKEN must be set in $HOME/.env"
+if [ -z "$GITHUB_USER" ] || [ -z "$GITHUB_PAT" ]; then
+    echo "Error: GITHUB_USER and GITHUB_PAT must be set in $HOME/.env"
     exit 1
 fi
 
@@ -23,12 +23,12 @@ TARGET_DIR="$HOME/github_mirrors"
 mkdir -p "$TARGET_DIR"
 
 # Fetch repository list from GitHub API
-repos=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/user/repos?per_page=100" | grep '"name"' | sed -E 's/.*"name": "([^"]+)".*/\1/')
+repos=$(curl -s -H "Authorization: Bearer $GITHUB_PAT" "https://api.github.com/user/repos?per_page=100" | grep '"name"' | sed -E 's/.*"name": "([^"]+)".*/\1/')
 
 # Mirror each repository
 for repo in $repos; do
-    repo_url="https://$GITHUB_TOKEN@github.com/$GITHUB_USER/$repo.git"
-    mirror_dir="$TARGET_DIR/$repo.git"
+    repo_url="https://$GITHUB_PAT@github.com/$GITHUB_USER/$repo"
+    mirror_dir="$TARGET_DIR/$repo"
 
     if [ -d "$mirror_dir" ]; then
         # Update existing mirror
