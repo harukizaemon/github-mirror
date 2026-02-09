@@ -46,10 +46,10 @@ EOF
 chmod 600 "$HOME/.env"
 ```
 
-## Save the script to $HOME/bin/mirror-github.sh and make it executable
+## Save the script to some location and make it executable
 
 ```
-chmod 700 "$HOME/mirror-github.sh"
+chmod 755 "mirror-github.sh"
 ```
 
 ## Schedule with Task Scheduler in DSM
