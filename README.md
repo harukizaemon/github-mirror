@@ -27,7 +27,7 @@ git --version
 
 ## Create a GitHub Personal Access Token
 
-1. Navigate to [https://github.com/settings/tokens]
+1. Navigate to [https://github.com/settings/personal-access-tokens]
 2. Select **Generate new token**
 3. Give your token a descriptive name (e.g., "NAS Mirror")
 4. Set an expiration date
