@@ -2,13 +2,13 @@
 
 ### Install Git
 
-1. Open **Package Center** on your DSM.
+1. Open **Package Center**.
 2. Search for "**Git Server**".
-3. Click Install. This package provides the git command-line tool needed for mirroring
+3. Click Install.
 
 Alternatively, use the Git package from [SynoCommunity](https://synocommunity.com).
 
-### Enable SSH (Required for Git)
+### Enable SSH (required for Git)
 
 1. Go to **Control Panel** > **Terminal & SNMP**.
 2. Check **Enable SSH service** and set a port (default is 22).
@@ -16,7 +16,7 @@ Alternatively, use the Git package from [SynoCommunity](https://synocommunity.co
 
 ### Verify installation
 
-1. Open an SSH terminal
+1. SSH to the NAS.
 2. Test the commands:
 
 ```
@@ -55,5 +55,8 @@ chmod 755 "mirror-github.sh"
 ## Schedule with Task Scheduler in DSM
 
 1. Go to **Control Panel** > **Task Scheduler** > **Create** > **Scheduled Task** > **User-defined script**
-2. Command: `/bin/sh "$HOME/bin/mirror-github.sh"`
-3. Set schedule (e.g., every 30 minutes)
+2. Give your task a descriptive name (e.g., "GitHub Mirror")
+3. Select an owner (the task will run as that user)
+4. Set the Run-command to `/bin/sh "$HOME/bin/mirror-github.sh"`
+5. Set schedule (e.g., daily)
+6. Decide if you want to receive emails when the script fails
