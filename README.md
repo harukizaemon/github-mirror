@@ -6,6 +6,8 @@
 2. Search for "**Git Server**".
 3. Click Install. This package provides the git command-line tool needed for mirroring
 
+Alternatively, use the Git package from [SynoCommunity](https://synocommunity.com).
+
 ### Enable SSH (Required for Git)
 
 1. Go to **Control Panel** > **Terminal & SNMP**.
