@@ -34,9 +34,7 @@ git --version
 5. Select the level of access
 6. Add a **Contents** permission set to **Read-only**
 7. Click **Generate token**
-
-Copy the token immediately and store it securely (e.g., in a password manager). It will not be shown again
-2
+8. Copy the token immediately and store it securely (e.g., in a password manager)
 
 ## Update your .env file
 
